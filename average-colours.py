@@ -22,7 +22,10 @@ download_folder = "cache"
 download_name = "test"
 frame_folder = os.path.join(download_folder,"frames")
 
-shutil.rmtree(download_folder)
+try:
+  shutil.rmtree(download_folder)
+except FileNotFoundError:
+  print(download_folder + " folder does not exist. Creating one!")
 
 #Make sure folders exist
 os.makedirs(download_folder, exist_ok=True)
