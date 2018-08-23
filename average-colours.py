@@ -9,7 +9,13 @@ import os
 import shutil
 from PIL import Image, ImageStat
 
-
+#Get average colour of frames
+def get_average_colour(image_name, colour_list):
+  image = Image.open(frame_folder+"/"+image_name)
+  average = ImageStat.Stat(image).median
+  colour_list.append(average)
+  print(image_name + ": " + str(average))
+  
 video_url = "https://www.youtube.com/watch?v=hMILDJ_l5ik"
 
 download_folder = "cache"
@@ -32,19 +38,11 @@ vidcap = cv2.VideoCapture(download_folder+"/"+download_name+".mp4")
 fps = vidcap.get(cv2.CAP_PROP_FPS)
 success,image = vidcap.read()
 count = 0
-frame_list = []
+colour_list = []
 while success:
   if count % round(fps) == 0:
     frame_name = "frame%d.jpg" % count
     cv2.imwrite(frame_folder+"/"+frame_name, image)     # save frame as JPEG file
-    frame_list.append(frame_name)
+    get_average_colour(frame_name, colour_list)
   success,image = vidcap.read()
   count += 1
-
-print(frame_list)
-
-#Get average colour of frames
-for imagename in frame_list:
-  image = Image.open(frame_folder+"/"+imagename)
-  average = ImageStat.Stat(image).median
-  print(imagename + ": " + str(average))
