@@ -65,6 +65,8 @@ def average_colours(video_url):
     d.line((index,len(colour_list), index, 0), fill=(int(value[0]),int(value[1]),int(value[2])))
   
   output_image = output_image.resize((1920,1080),resample=Image.BILINEAR)
+  output_image.format = "PNG"
+  output_image.save("output.png", format="PNG")
   output_image.show()
 
 
