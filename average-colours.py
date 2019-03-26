@@ -66,7 +66,8 @@ def average_colours(video_url):
   for index, value in enumerate(colour_list):
     d.line((index,image_size, index, 0), fill=(int(value[0]),int(value[1]),int(value[2])))
   
+  output_image = output_image.resize((1920,1080),resample=Image.BILINEAR)
   output_image.show()
 
 
-if __name__ == "__main__": average_colours("https://www.youtube.com/watch?v=hMILDJ_l5ik")
+if __name__ == "__main__": average_colours("https://www.youtube.com/watch?v=HRV6tMR-SSs")
