@@ -56,7 +56,7 @@ def average_colours(video_url):
 
   print("averaging colours...")
   colour_list = get_colour_list(download_folder, download_name, frame_folder)
-  
+
   print("writing image...")
   output_image = Image.new('RGB', (len(colour_list), len(colour_list)), color = 'white')
   d = ImageDraw.Draw(output_image)
@@ -68,4 +68,4 @@ def average_colours(video_url):
   output_image.show()
 
 
-if __name__ == "__main__": average_colours("https://www.youtube.com/watch?v=668nUCeBHyY")
+if __name__ == "__main__": average_colours(str(input("Enter a YouTube video URL:")))
