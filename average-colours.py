@@ -49,19 +49,22 @@ def average_colours(video_url):
   os.makedirs(frame_folder, exist_ok=True)
 
   #Download video
+  print("downloading video...")
   video = YouTube(video_url)
   stream = video.streams.filter(mime_type="video/mp4",res="360p").all()[0]
   stream.download(download_folder, download_name)
 
+  print("averaging colours...")
   colour_list = get_colour_list(download_folder, download_name, frame_folder)
 
   image_size = image_scale(len(colour_list), 2)
 
-  output_image = Image.new('RGB', image_size, image_size), color = 'white')
+  print("writing image...")
+  output_image = Image.new('RGB', (image_size, image_size), color = 'white')
   d = ImageDraw.Draw(output_image)
 
   for index, value in enumerate(colour_list):
-    d.line((image_scale(index,2),image_size, image_scale(index,2), 0), fill=(int(value[0]),int(value[1]),int(value[2])))
+    d.line((index,image_size, index, 0), fill=(int(value[0]),int(value[1]),int(value[2])))
   
   output_image.show()
 
