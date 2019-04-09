@@ -39,4 +39,5 @@ Now just wait until the image is saved in the script folder (as a PNG) and an ou
 Feel free to fork, mirror, etc. 
 
 ## License
+MIT (basically just do whatever I'm not involved)
 
